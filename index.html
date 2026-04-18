@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* Анимированный фон с частицами */
         #bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -60,15 +59,8 @@
             font-weight: 900;
         }
 
-        .scroll-hint {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: var(--pink);
-            animation: bounce 2s infinite;
-        }
-
         .story-text {
-            font-size: 1.2em;
+            font-size: 1.15em;
             line-height: 1.8;
             color: #cbd5e1;
             margin: 20px 0;
@@ -80,48 +72,39 @@
             background: linear-gradient(135deg, var(--pink), var(--purple));
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 18px 45px;
             border-radius: 50px;
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             box-shadow: 0 10px 20px rgba(244, 114, 182, 0.3);
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
-        .btn-invite:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(244, 114, 182, 0.5);
+        .btn-invite:active { transform: scale(0.95); }
+
+        /* Красивое уведомление вместо alert */
+        #custom-alert {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(139, 92, 246, 0.95);
+            padding: 30px;
+            border-radius: 30px;
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .heart-icon {
-            font-size: 4em;
-            margin: 20px 0;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.2s;
-        }
+        @keyframes pop { from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } }
 
-        .heart-icon:active { transform: scale(0.8); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        /* Анимация появления при скролле */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .heart-icon { font-size: 4em; cursor: pointer; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
     </style>
 </head>
 <body>
@@ -132,60 +115,63 @@
         <h1>100 ДНЕЙ</h1>
         <p style="font-size: 1.5em; color: var(--pink);">нашей истории</p>
         <div class="heart-icon" onclick="fireConfetti()">❤</div>
-        <div class="scroll-hint">Листай вниз ↓</div>
+        <p style="color: #64748b; margin-top: 30px;">Листай вниз ↓</p>
     </div>
 
     <div class="section reveal">
         <div class="glass-card">
             <p class="story-text">
                 За эти сто дней мы прошли путь от первой встречи до моментов, которые я храню в сердце. <br><br>
-                От тех самых первых прогулок до разговоров о <span class="highlight">твоем переезде в Краснодар и нашем будущем</span> — каждый момент стал для меня по-настоящему ценным.
+                От тех самых первых прогулок до разговоров о <span class="highlight">твоем переезде в Краснодар и нашем будущем</span> — каждый миг стал для меня бесценным.
             </p>
         </div>
     </div>
 
     <div class="section reveal">
         <div class="glass-card" style="border-color: var(--gold);">
-            <h2>Ты приглашена</h2>
+            <h2 style="color: var(--gold);">Ты приглашена</h2>
             <p class="story-text">
-                Мне нравится, как мы учимся понимать друг друга без слов. <br><br>
+                Мне нравится, как мы учимся понимать друг друга без слов. <br>
                 Давай сделаем этот юбилей точкой отсчета для чего-то еще более масштабного.
             </p>
-            <div style="font-size: 2em; font-weight: bold; color: var(--gold); margin: 20px 0;">
+            <div style="font-size: 2.2em; font-weight: bold; color: var(--gold); margin: 25px 0; letter-spacing: 3px;">
                 06.05.2026
             </div>
-            <button class="btn-invite" onclick="alert('Уведомление отправлено! Жду тебя с нетерпением ❤')">Я приду!</button>
+            <button class="btn-invite" onclick="showLove()">Я приду!</button>
         </div>
     </div>
 
+    <div id="custom-alert">
+        <h3 style="margin: 0;">Жду тебя с нетерпением! ❤</h3>
+        <p style="margin: 10px 0 0 0; font-size: 0.9em; opacity: 0.8;">Это будет наш лучший вечер.</p>
+    </div>
+
     <script>
-        // Функция для конфетти при клике на сердце
         function fireConfetti() {
             confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
+                particleCount: 150, spread: 70, origin: { y: 0.6 },
                 colors: ['#f472b6', '#8b5cf6', '#fde047']
             });
         }
 
-        // Слежение за скроллом для появления элементов
+        function showLove() {
+            fireConfetti();
+            const alert = document.getElementById('custom-alert');
+            alert.style.display = 'block';
+            setTimeout(() => { alert.style.display = 'none'; }, 4000);
+        }
+
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
+                if (elementTop < windowHeight - 150) { reveals[i].classList.add("active"); }
             }
         }
-
         window.addEventListener("scroll", reveal);
-        
-        // Запуск первой анимации
         reveal();
     </script>
 </body>
 </html>
+
