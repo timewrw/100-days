@@ -3,85 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 дней вместе</title>
+    <title>100 дней нашего счастья</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-            color: #f1f5f9;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Глубокий темно-фиолетовый фон */
+            background: radial-gradient(circle at center, #2e1065 0%, #0f172a 100%);
+            color: #f8fafc;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Эффект мерцающих звезд */
         .stars {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
         .card {
             position: relative;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(216, 180, 254, 0.2);
+            padding: 50px 30px;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
             text-align: center;
-            max-width: 320px;
-            width: 80%;
+            max-width: 350px;
+            width: 85%;
             z-index: 1;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            font-size: 2.5em;
-            margin: 0 0 15px 0;
-            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            font-size: 2.8em;
+            margin: 0 0 20px 0;
+            /* Золотисто-розовый градиент */
+            background: linear-gradient(135deg, #fde047 0%, #f472b6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
         }
 
-        p {
-            font-size: 1.1em;
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 25px;
+        .description {
+            font-size: 1.15em;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #f472b6;
+            font-weight: 600;
         }
 
         .date-badge {
             display: inline-block;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(129, 140, 248, 0.2) 100%);
-            padding: 12px 25px;
+            background: rgba(253, 224, 71, 0.1);
+            padding: 15px 30px;
             border-radius: 50px;
-            color: #38bdf8;
+            color: #fde047;
             font-weight: bold;
-            font-size: 1.4em;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            margin-bottom: 20px;
+            font-size: 1.5em;
+            border: 1px solid rgba(253, 224, 71, 0.3);
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(253, 224, 71, 0.1);
+        }
+
+        .footer-text {
+            font-size: 1em;
+            color: #94a3b8;
+            font-style: italic;
         }
 
         .heart {
-            font-size: 3em;
+            font-size: 3.5em;
             color: #ef4444;
             display: block;
-            margin-top: 15px;
-            filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.5));
+            margin-top: 25px;
+            filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6));
             animation: pulse 1.5s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)); }
-            50% { transform: scale(1.15); filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.7)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -89,9 +108,18 @@
     <div class="stars"></div>
     <div class="card">
         <h1>100 дней</h1>
-        <p>Эти три месяца были особенными благодаря тебе. И это только начало нашего пути.</p>
+        <div class="description">
+            За это время обычные прогулки стали <span class="highlight">самыми важными моментами</span>, а твоя рука в моей — самым приятным чувством. 
+            <br><br>
+            Я очень ценю всё, что у нас есть, и хочу, чтобы этот вечер стал <span class="highlight">особенным</span>.
+        </div>
+        
         <div class="date-badge">6 мая 2026</div>
-        <p>Приглашаю тебя встретить этот вечер вместе.</p>
+        
+        <div class="footer-text">
+            Приглашаю тебя отпраздновать <br> нашу первую маленькую победу.
+        </div>
+        
         <span class="heart">❤</span>
     </div>
 </body>
