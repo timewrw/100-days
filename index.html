@@ -6,14 +6,14 @@
     <title>100 дней вместе</title>
     <style>
         :root {
-            --bg-color: #0f172a;
+            --bg-color: #0b1120;
             --accent-color: #38bdf8;
             --text-color: #f1f5f9;
         }
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             display: flex;
@@ -23,57 +23,53 @@
             text-align: center;
         }
         .container {
-            padding: 30px;
-            max-width: 400px;
+            padding: 40px 20px;
+            max-width: 500px;
         }
         h1 {
-            font-size: 2.8em;
+            font-size: 3em;
             margin-bottom: 20px;
+            letter-spacing: -1px;
             background: linear-gradient(90deg, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         p {
-            font-size: 1.2em;
+            font-size: 1.25em;
             line-height: 1.6;
             color: #94a3b8;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
-        .date-box {
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 15px;
-            border-radius: 15px;
-            background: rgba(30, 41, 59, 0.5);
-            display: inline-block;
-        }
-        .date {
+        .date-display {
+            font-size: 1.8em;
             font-weight: bold;
             color: var(--accent-color);
-            font-size: 1.5em;
-            display: block;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 10px 30px;
+            border-radius: 50px;
+            background: rgba(30, 41, 59, 0.4);
+            display: inline-block;
         }
         .heart {
             color: #ef4444;
-            font-size: 1.8em;
+            font-size: 2.5em;
             display: block;
-            margin-top: 30px;
+            margin-top: 40px;
             animation: pulse 1.5s infinite;
         }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>100 дней</h1>
-        <p>Это были прекрасные три месяца, и это только начало.<br><br>Я приглашаю тебя отметить нашу первую круглую дату вместе.</p>
+        <h1>100 дней вместе</h1>
+        <p>Это было прекрасное время, и это только начало.<br>Я приглашаю тебя отметить нашу первую круглую дату.</p>
         
-        <div class="date-box">
-            <span class="date">6 мая 2026</span>
-        </div>
+        <div class="date-display">6 мая 2026</div>
         
         <span class="heart">❤</span>
     </div>
