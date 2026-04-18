@@ -4,117 +4,188 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наши 100 дней</title>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
     <style>
+        :root {
+            --gold: #fde047;
+            --pink: #f472b6;
+            --purple: #8b5cf6;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+            background-color: #050505;
             color: #ffffff;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .stars {
-            position: absolute;
+        /* Анимированный фон с частицами */
+        #bg {
+            position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.5;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
         }
 
-        .card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 20px;
-            border-radius: 35px;
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
             text-align: center;
-            max-width: 380px;
-            width: 90%;
-            z-index: 1;
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
-            animation: appear 1.8s ease-out;
+            box-sizing: border-box;
         }
 
-        @keyframes appear {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 25px;
+            border-radius: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         h1 {
-            font-size: 2.4em;
-            margin: 0 0 25px 0;
-            background: linear-gradient(135deg, #ffd700 0%, #ff69b4 100%);
+            font-size: 3.5em;
+            margin: 0;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--pink) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            font-weight: 900;
         }
 
-        .message {
-            font-size: 1.05em;
-            color: #cbd5e1;
-            line-height: 1.7;
-            margin-bottom: 30px;
-            text-align: left;
-            padding: 0 10px;
-        }
-
-        .highlight { color: #f472b6; font-weight: 600; }
-
-        .invitation-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px dashed rgba(253, 224, 71, 0.4);
+        .scroll-hint {
             margin-top: 20px;
+            font-size: 0.9em;
+            color: var(--pink);
+            animation: bounce 2s infinite;
         }
 
-        .date-text {
-            color: #ffd700;
-            font-size: 1.4em;
+        .story-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin: 20px 0;
+        }
+
+        .highlight { color: var(--gold); font-weight: bold; }
+
+        .btn-invite {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2em;
             font-weight: bold;
-            display: block;
-            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 20px rgba(244, 114, 182, 0.3);
+            margin-top: 30px;
         }
 
-        .heart {
-            font-size: 3em;
-            color: #ff3e3e;
-            display: block;
-            margin-top: 25px;
-            filter: drop-shadow(0 0 10px rgba(255, 62, 62, 0.5));
-            animation: beat 1.2s infinite;
+        .btn-invite:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(244, 114, 182, 0.5);
         }
 
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+        .heart-icon {
+            font-size: 4em;
+            margin: 20px 0;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .heart-icon:active { transform: scale(0.8); }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Анимация появления при скролле */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="card">
-        <h1>100 дней вместе</h1>
-        <div class="message">
-            За эти сто дней мы успели создать свою маленькую историю. От тех самых первых неловких прогулок до разговор о твоем переезде и нашем будущем — <span class="highlight">каждый момент</span> стал для меня по-настоящему ценным. 
-            <br><br>
-            Мне нравится, как мы учимся понимать друг друга без слов. Ты делаешь мою жизнь ярче, и я безумно рад, что этот путь мы <span class="highlight">проходим вместе</span>.
-        </div>
-        
-        <div class="invitation-box">
-            <span style="color: #94a3b8; font-size: 0.9em; display: block; margin-bottom: 5px;">Приглашаю тебя встретить нашу дату:</span>
-            <span class="date-text">6 МАЯ 2026</span>
-            <span style="color: #cbd5e1;">Давай сделаем этот вечер особенным только для нас двоих.</span>
-        </div>
-        
-        <span class="heart">❤</span>
+
+    <div id="bg"></div>
+
+    <div class="section">
+        <h1>100 ДНЕЙ</h1>
+        <p style="font-size: 1.5em; color: var(--pink);">нашей истории</p>
+        <div class="heart-icon" onclick="fireConfetti()">❤</div>
+        <div class="scroll-hint">Листай вниз ↓</div>
     </div>
+
+    <div class="section reveal">
+        <div class="glass-card">
+            <p class="story-text">
+                За эти сто дней мы прошли путь от первой встречи до моментов, которые я храню в сердце. <br><br>
+                От тех самых первых прогулок до <span class="highlight">твоем переезде в Краснодар и нашем будущем</span> — каждый момент стал для меня по-настоящему ценным.
+            </p>
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="glass-card" style="border-color: var(--gold);">
+            <h2>Ты приглашена</h2>
+            <p class="story-text">
+                Мне нравится, как мы учимся понимать друг друга без слов. <br><br>
+                Давай сделаем этот юбилей точкой отсчета для чего-то еще более масштабного.
+            </p>
+            <div style="font-size: 2em; font-weight: bold; color: var(--gold); margin: 20px 0;">
+                06.05.2026
+            </div>
+            <button class="btn-invite" onclick="alert('Уведомление отправлено! Жду тебя с нетерпением ❤')">Я приду!</button>
+        </div>
+    </div>
+
+    <script>
+        // Функция для конфетти при клике на сердце
+        function fireConfetti() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#f472b6', '#8b5cf6', '#fde047']
+            });
+        }
+
+        // Слежение за скроллом для появления элементов
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        
+        // Запуск первой анимации
+        reveal();
+    </script>
 </body>
 </html>
-
