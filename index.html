@@ -8,14 +8,15 @@
     <style>
         :root {
             --gold: #fde047;
-            --pink: #f472b6;
-            --purple: #8b5cf6;
+            --red-pure: #ff0000; /* Чистый красный */
+            --red-glow: rgba(255, 0, 0, 0.7); 
+            --bg-dark: #050505;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #050505;
+            background-color: var(--bg-dark);
             color: #ffffff;
             font-family: 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
@@ -36,12 +37,12 @@
             align-items: center;
             padding: 20px;
             text-align: center;
-            box-sizing: border-box;
         }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 40px 25px;
             border-radius: 40px;
@@ -53,7 +54,7 @@
         h1 {
             font-size: 3.5em;
             margin: 0;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--pink) 100%);
+            background: linear-gradient(135deg, #fff9c4 0%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 900;
@@ -66,10 +67,30 @@
             margin: 20px 0;
         }
 
-        .highlight { color: var(--gold); font-weight: bold; }
+        .highlight { color: var(--red-pure); font-weight: bold; }
+
+        /* ИНТЕРАКТИВНОЕ КРАСНОЕ СЕРДЦЕ */
+        .heart-icon { 
+            font-size: 5em; 
+            cursor: pointer; 
+            color: var(--red-pure);
+            display: inline-block;
+            margin-top: 20px;
+            /* Анимация настоящего сердцебиения с красным свечением */
+            animation: heartBeat 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+            user-select: none;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--red-glow)); }
+            15% { transform: scale(1.25); filter: drop-shadow(0 0 25px var(--red-pure)); }
+            30% { transform: scale(1); filter: drop-shadow(0 0 5px var(--red-glow)); }
+            45% { transform: scale(1.15); filter: drop-shadow(0 0 15px var(--red-pure)); }
+            60% { transform: scale(1); filter: drop-shadow(0 0 5px var(--red-glow)); }
+        }
 
         .btn-invite {
-            background: linear-gradient(135deg, var(--pink), var(--purple));
+            background: linear-gradient(135deg, var(--red-pure), #8b0000);
             color: white;
             border: none;
             padding: 18px 45px;
@@ -77,14 +98,13 @@
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(244, 114, 182, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
             margin-top: 20px;
         }
 
-        .btn-invite:active { transform: scale(0.95); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Красивое уведомление вместо alert */
         #custom-alert {
             display: none;
             position: fixed;
@@ -94,17 +114,8 @@
             padding: 30px;
             border-radius: 30px;
             z-index: 100;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-            animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
         }
-
-        @keyframes pop { from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .heart-icon { font-size: 4em; cursor: pointer; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
     </style>
 </head>
 <body>
@@ -113,9 +124,9 @@
 
     <div class="section">
         <h1>100 ДНЕЙ</h1>
-        <p style="font-size: 1.5em; color: var(--pink);">нашей истории</p>
+        <p style="font-size: 1.5em; color: var(--gold); font-weight: 600;">нашей истории</p>
         <div class="heart-icon" onclick="fireConfetti()">❤</div>
-        <p style="color: #64748b; margin-top: 30px;">Листай вниз ↓</p>
+        <p style="color: #64748b; margin-top: 40px;">Листай вниз ↓</p>
     </div>
 
     <div class="section reveal">
@@ -134,7 +145,7 @@
                 Мне нравится, как мы учимся понимать друг друга без слов. <br>
                 Давай сделаем этот юбилей точкой отсчета для чего-то еще более масштабного.
             </p>
-            <div style="font-size: 2.2em; font-weight: bold; color: var(--gold); margin: 25px 0; letter-spacing: 3px;">
+            <div style="font-size: 2.5em; font-weight: 900; color: var(--gold); margin: 25px 0;">
                 06.05.2026
             </div>
             <button class="btn-invite" onclick="showLove()">Я приду!</button>
@@ -143,14 +154,14 @@
 
     <div id="custom-alert">
         <h3 style="margin: 0;">Жду тебя с нетерпением! ❤</h3>
-        <p style="margin: 10px 0 0 0; font-size: 0.9em; opacity: 0.8;">Это будет наш лучший вечер.</p>
+        <p style="margin: 10px 0 0 0; font-size: 1em;">Это будет наш лучший вечер.</p>
     </div>
 
     <script>
         function fireConfetti() {
             confetti({
                 particleCount: 150, spread: 70, origin: { y: 0.6 },
-                colors: ['#f472b6', '#8b5cf6', '#fde047']
+                colors: ['#ff0000', '#ffd700', '#ffffff']
             });
         }
 
@@ -174,4 +185,3 @@
     </script>
 </body>
 </html>
-
