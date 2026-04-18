@@ -5,72 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100 дней вместе</title>
     <style>
-        :root {
-            --bg-color: #0b1120;
-            --accent-color: #38bdf8;
-            --text-color: #f1f5f9;
-        }
         body {
             margin: 0;
             padding: 0;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Эффект мерцающих звезд */
+        .stars {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+        }
+
+        .card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             text-align: center;
+            max-width: 320px;
+            width: 80%;
+            z-index: 1;
         }
-        .container {
-            padding: 40px 20px;
-            max-width: 500px;
-        }
+
         h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            font-size: 2.5em;
+            margin: 0 0 15px 0;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
+
         p {
-            font-size: 1.25em;
-            line-height: 1.6;
+            font-size: 1.1em;
             color: #94a3b8;
-            margin-bottom: 40px;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
-        .date-display {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: var(--accent-color);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 10px 30px;
-            border-radius: 50px;
-            background: rgba(30, 41, 59, 0.4);
+
+        .date-badge {
             display: inline-block;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(129, 140, 248, 0.2) 100%);
+            padding: 12px 25px;
+            border-radius: 50px;
+            color: #38bdf8;
+            font-weight: bold;
+            font-size: 1.4em;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            margin-bottom: 20px;
         }
+
         .heart {
+            font-size: 3em;
             color: #ef4444;
-            font-size: 2.5em;
             display: block;
-            margin-top: 40px;
-            animation: pulse 1.5s infinite;
+            margin-top: 15px;
+            filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.5));
+            animation: pulse 1.5s infinite ease-in-out;
         }
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.7)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>100 дней вместе</h1>
-        <p>Это было прекрасное время, и это только начало.<br>Я приглашаю тебя отметить нашу первую круглую дату.</p>
-        
-        <div class="date-display">6 мая 2026</div>
-        
+    <div class="stars"></div>
+    <div class="card">
+        <h1>100 дней</h1>
+        <p>Эти три месяца были особенными благодаря тебе. И это только начало нашего пути.</p>
+        <div class="date-badge">6 мая 2026</div>
+        <p>Приглашаю тебя встретить этот вечер вместе.</p>
         <span class="heart">❤</span>
     </div>
 </body>
