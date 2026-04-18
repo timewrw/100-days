@@ -15,7 +15,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .stars {
@@ -31,24 +31,24 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 45px 25px;
+            padding: 40px 20px;
             border-radius: 35px;
             text-align: center;
-            max-width: 340px;
-            width: 85%;
+            max-width: 380px;
+            width: 90%;
             z-index: 1;
             box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
-            animation: appear 1.5s ease-out;
+            animation: appear 1.8s ease-out;
         }
 
         @keyframes appear {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            font-size: 2.6em;
-            margin: 0 0 20px 0;
+            font-size: 2.4em;
+            margin: 0 0 25px 0;
             background: linear-gradient(135deg, #ffd700 0%, #ff69b4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -56,56 +56,52 @@
         }
 
         .message {
-            font-size: 1.1em;
-            color: #e2e8f0;
-            line-height: 1.6;
+            font-size: 1.05em;
+            color: #cbd5e1;
+            line-height: 1.7;
             margin-bottom: 30px;
+            text-align: left;
+            padding: 0 10px;
         }
 
-        .highlight { color: #ff69b4; font-weight: bold; }
+        .highlight { color: #f472b6; font-weight: 600; }
 
-        .date-box {
-            display: inline-block;
+        .invitation-box {
             background: rgba(255, 255, 255, 0.05);
-            padding: 12px 25px;
+            padding: 20px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border: 1px dashed rgba(253, 224, 71, 0.4);
+            margin-top: 20px;
+        }
+
+        .date-text {
             color: #ffd700;
-            font-size: 1.6em;
+            font-size: 1.4em;
             font-weight: bold;
-            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .heart {
             font-size: 3em;
             color: #ff3e3e;
             display: block;
-            margin-top: 30px;
+            margin-top: 25px;
             filter: drop-shadow(0 0 10px rgba(255, 62, 62, 0.5));
             animation: beat 1.2s infinite;
         }
 
         @keyframes beat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.2); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
     </style>
 </head>
 <body>
     <div class="stars"></div>
     <div class="card">
-        <h1>100 дней</h1>
+        <h1>100 дней вместе</h1>
         <div class="message">
-            За это время мы прошли путь от первой встречи до моментов, которые я храню в сердце. <br><br>
-            Спасибо за твою <span class="highlight">искренность</span> и за то, что ты рядом. Хочу, чтобы этот вечер стал для нас <span class="highlight">особенным</span>.
-        </div>
-        
-        <div class="date-box">06.05.2026</div>
-        
-        <span class="heart">❤</span>
-    </div>
-</body>
-</html>
+            За эти сто дней мы успели создать свою маленькую историю. От тех самых первых прогулок до уютных вечеров за чашкой кофе с котами — <span class="highlight">каждый момент</span> стал для меня по-настоящему ценным. 
+            <br><br>
+            Мне нравится, как мы учимся понимать друг друга без слов и как твоя рука всегда находит мою. Ты делаешь мою жизнь ярче, и я безумно рад, что этот путь мы <span class="highlight
