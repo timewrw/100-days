@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <style>
         :root {
             --gold: #fde047;
-            --red-pure: #ff0000; /* Чистый красный */
+            --red-pure: #ff0000;
             --red-glow: rgba(255, 0, 0, 0.7); 
             --bg-dark: #050505;
         }
@@ -69,14 +69,12 @@
 
         .highlight { color: var(--red-pure); font-weight: bold; }
 
-        /* ИНТЕРАКТИВНОЕ КРАСНОЕ СЕРДЦЕ */
         .heart-icon { 
             font-size: 5em; 
             cursor: pointer; 
             color: var(--red-pure);
             display: inline-block;
             margin-top: 20px;
-            /* Анимация настоящего сердцебиения с красным свечением */
             animation: heartBeat 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
             user-select: none;
         }
@@ -110,11 +108,12 @@
             position: fixed;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(139, 92, 246, 0.95);
+            background: rgba(183, 28, 28, 0.95);
             padding: 30px;
             border-radius: 30px;
             z-index: 100;
             text-align: center;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -146,7 +145,7 @@
                 Давай сделаем этот юбилей точкой отсчета для чего-то еще более масштабного.
             </p>
             <div style="font-size: 2.5em; font-weight: 900; color: var(--gold); margin: 25px 0;">
-                06.05.2026
+                10.05.2026
             </div>
             <button class="btn-invite" onclick="showLove()">Я приду!</button>
         </div>
