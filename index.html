@@ -99,4 +99,96 @@
             box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
             margin-top: 20px;
             transition: transform 0.2s;
+        }
 
+        .btn-invite:active {
+            transform: scale(0.9);
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        #custom-alert {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(183, 28, 28, 0.95);
+            padding: 30px;
+            border-radius: 30px;
+            z-index: 100;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bg"></div>
+
+    <div class="section">
+        <h1>100 ДНЕЙ</h1>
+        <p style="font-size: 1.5em; color: var(--gold); font-weight: 600;">нашей истории</p>
+        <div class="heart-icon" onclick="fireConfetti()">❤</div>
+        <p style="color: #64748b; margin-top: 40px;">Листай вниз ↓</p>
+    </div>
+
+    <div class="section reveal">
+        <div class="glass-card">
+            <p class="story-text">
+                За эти сто дней мы прошли путь от первой встречи до моментов, которые я храню в сердце. <br><br>
+                От тех самых первых прогулок до разговоров о <span class="highlight">твоем переезде в Краснодар и нашем будущем</span> — каждый миг стал для меня бесценным.
+            </p>
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="glass-card" style="border-color: var(--gold);">
+            <h2 style="color: var(--gold); margin: 0;">Ты приглашена</h2>
+            <p class="story-text">
+                Мне нравится, как мы учимся понимать друг друга без слов. <br>
+                Давай сделаем этот юбилей точкой отсчета для чего-то еще более масштабного.
+            </p>
+            <div style="font-size: 2.5em; font-weight: 900; color: var(--gold); margin: 20px 0;">
+                10.05.2026
+            </div>
+            <button class="btn-invite" id="inviteBtn" onclick="showLove()">Я приду!</button>
+        </div>
+    </div>
+
+    <div id="custom-alert">
+        <h3 style="margin: 0;">Жду тебя с нетерпением! ❤</h3>
+        <p style="margin: 10px 0 0 0; font-size: 1em;">Это будет наш лучший вечер.</p>
+    </div>
+
+    <script>
+        function fireConfetti() {
+            if(window.confetti) {
+                confetti({
+                    particleCount: 150, spread: 70, origin: { y: 0.6 },
+                    colors: ['#ff0000', '#ffd700', '#ffffff']
+                });
+            }
+        }
+
+        function showLove() {
+            fireConfetti();
+            const alertBox = document.getElementById('custom-alert');
+            alertBox.style.display = 'block';
+            setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
