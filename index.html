@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С полугодием, любимая! ❤️</title>
+    <title>Приглашение для любимой ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -39,7 +39,7 @@
 
         h1 {
             color: #d90429;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
@@ -107,17 +107,19 @@
 </head>
 <body>
 
+    <!-- Наш плеер для локального файла song.mp3 -->
     <audio id="love-song" src="song.mp3" loop></audio>
 
     <div class="container">
-        <h1>Полгода вместе! ❤️</h1>
+        <h1>Приглашение для тебя! ❤️</h1>
         <p>
-            Любимая, сегодня особенный день. Ровно 6 месяцев назад моя жизнь изменилась, 
-            и я бесконечно счастлив быть рядом с тобой. Спасибо тебе за твою улыбку, 
-            нежность и за каждый прожитый вместе момент!
-            <span class="date">27 августа</span>
+            Любимая, у нас приближается особенный день — полгода вместе! 
+            В честь этого я приглашаю тебя на незабываемое свидание. 
+            Обещаю море улыбок, красивых мест и отличную атмосферу только для нас двоих. 
+            Ты пойдешь со мной?
+            <span class="date">Встречаемся 27 августа</span>
         </p>
-        <button class="btn-play" onclick="startSurprise()">Включить сюрприз</button>
+        <button class="btn-play" onclick="startSurprise()">Открыть приглашение</button>
     </div>
 
     <script>
@@ -125,7 +127,7 @@
             const audio = document.getElementById('love-song');
             const button = document.querySelector('.btn-play');
             
-            // Включаем припев (53 секунда)
+            // Включаем припев песни Джигана (53 секунда)
             audio.currentTime = 53;
             
             audio.play().catch(error => {
@@ -151,4 +153,3 @@
     </script>
 </body>
 </html>
-
