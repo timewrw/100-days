@@ -107,6 +107,9 @@
 </head>
 <body>
 
+    <!-- Аудиофайл из сети, зацикленный -->
+    <audio id="love-song" src="https://m.muzofond.fm/inst/6f595febe53da7e/dzhigan_-_ya-lyublyu-tebya-ti-tolko-znaj_(muzofond.fm).mp3" loop></audio>
+
     <div class="container">
         <h1>Полгода вместе! ❤️</h1>
         <p>
@@ -115,12 +118,21 @@
             нежность и за каждый прожитый вместе момент!
             <span class="date">27 августа</span>
         </p>
-        <button class="btn-play" onclick="startSurprise()">Нажми сюда</button>
+        <button class="btn-play" onclick="startSurprise()">Включить сюрприз</button>
     </div>
 
     <script>
         function startSurprise() {
+            const audio = document.getElementById('love-song');
             const button = document.querySelector('.btn-play');
+            
+            // Включаем припев (53 секунда)
+            audio.currentTime = 53;
+            
+            audio.play().catch(error => {
+                console.log("Браузер заблокировал автозвук:", error);
+            });
+
             button.style.display = 'none';
             setInterval(createHeart, 300);
         }
@@ -140,3 +152,4 @@
     </script>
 </body>
 </html>
+
